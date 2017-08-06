@@ -1,5 +1,6 @@
 package org.kiwi.web.framework;
 
+import org.kiwi.web.framework.annotation.FrameworkController;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.servlet.mvc.condition.ParamsRequestCondition;
