@@ -22,6 +22,7 @@ public class EnhancedContextLoaderListener extends ContextLoaderListener {
 
     @Override
     public void contextInitialized(ServletContextEvent event) {
+        // TODO: 17/7/30 spring内存泄漏处理
         /**
          * 设置profiles.env变量
          */

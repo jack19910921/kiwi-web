@@ -13,6 +13,8 @@
         <java.version>1.7</java.version>
         <spring.version>4.2.9.RELEASE</spring.version>
         <kiwi.version>1.0-SNAPSHOT</kiwi.version>
+        <logback.version>1.1.2</logback.version>
+        <fastjson.version>1.2.7</fastjson.version>
         <servletApi.version>3.0.1</servletApi.version>
         <maven.source.plugin.version>2.4</maven.source.plugin.version>
         <surefire.version>2.12.4</surefire.version>
@@ -31,6 +33,20 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <!-- logback related -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
+        <!-- util related -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
         </dependency>
 
         <!-- servlet related -->
