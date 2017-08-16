@@ -4,11 +4,13 @@ import org.kiwi.context.ApplicationContextHolder;
 import org.kiwi.context.DeployPathHolder;
 import org.kiwi.context.KiwiConfig;
 import org.kiwi.context.PropertiesHolder;
+import org.springframework.beans.CachedIntrospectionResults;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.ContextLoaderListener;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
+import java.beans.Introspector;
 import java.io.File;
 import java.util.Enumeration;
 
@@ -22,7 +24,11 @@ public class EnhancedContextLoaderListener extends ContextLoaderListener {
 
     @Override
     public void contextInitialized(ServletContextEvent event) {
-        // TODO: 17/7/30 spring内存泄漏处理
+        /**
+         * jdk内省api缓存处理,防止内存泄漏
+         */
+        CachedIntrospectionResults.acceptClassLoader(Thread.currentThread().getContextClassLoader());
+
         /**
          * 设置profiles.env变量
          */
@@ -59,6 +65,15 @@ public class EnhancedContextLoaderListener extends ContextLoaderListener {
          * 加载使用kiwi框架的业务方配置文件
          */
         KiwiConfig.getInstance();
+    }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent event) {
+        /**
+         * 清空jdk内省api缓存结果,防止内存泄漏
+         */
+        CachedIntrospectionResults.clearClassLoader(Thread.currentThread().getContextClassLoader());
+        Introspector.flushCaches();
     }
 
 }

@@ -13,7 +13,7 @@ public class HealthCheckController {
 
     @RequestMapping(value = "/_health_check", method = RequestMethod.GET)
     public ResponseEntity<String> healthCheck() {
-        return new ResponseEntity<String>("ok", HttpStatus.OK);
+        return new ResponseEntity<>("ok", HttpStatus.OK);
     }
 
 }

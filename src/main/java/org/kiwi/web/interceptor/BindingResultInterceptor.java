@@ -22,15 +22,6 @@ public class BindingResultInterceptor implements MethodInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(BindingResultInterceptor.class);
 
 
-    /**
-     * Create a new BindingResultInterceptor.
-     */
-    public BindingResultInterceptor() {
-    }
-
-    /* (non-Javadoc)
-     * @see org.aopalliance.intercept.MethodInterceptor#invoke(org.aopalliance.intercept.MethodInvocation)
-     */
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         long before = System.currentTimeMillis();
@@ -46,6 +37,7 @@ public class BindingResultInterceptor implements MethodInterceptor {
                             logger.debug("///  Method: " + invocation.getMethod().getName() + " /// Annotation: " + annos[i][j].annotationType().getSimpleName() + " /// Argument:  " + args[i]);
                             logger.debug("///  Before throwing costs " + ((System.currentTimeMillis() - before) / 1000d) + " ms");
                         }
+                        // TODO: 17/8/16  
                         // throw new BeanValidationException(bindingResult);
                     }
                 }
